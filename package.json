@@ -1,25 +1,35 @@
 {
-  "name": "syno-hang-code",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/gcaaa31928/syno-hang-code.git",
-  "license": "MIT",
-  "devDependencies": {
-    "css-loader": "^1.0.0",
-    "node-sass": "^4.9.2",
-    "sass-loader": "^7.1.0",
-    "scss-loader": "^0.0.1",
-    "style-loader": "^0.21.0",
-    "vue-html-loader": "^1.2.4",
-    "vue-loader": "^15.2.6",
-    "vue-style-loader": "^4.1.1",
-    "vue-template-compiler": "^2.5.17",
-    "webpack": "^4.16.4",
-    "webpack-cli": "^3.1.0",
-    "webpack-command": "^0.4.1",
-    "webpack-dev-server": "^3.1.5"
-  },
-  "dependencies": {
-    "vue": "^2.5.17"
-  }
+	"name": "syno-hang-code",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "https://github.com/gcaaa31928/syno-hang-code.git",
+	"license": "MIT",
+	"devDependencies": {
+		"css-loader": "^1.0.0",
+		"node-sass": "^4.9.2",
+		"sass-loader": "^7.1.0",
+		"scss-loader": "^0.0.1",
+		"sequelize-cli": "^4.0.0",
+		"style-loader": "^0.21.0",
+		"vue-html-loader": "^1.2.4",
+		"vue-loader": "^15.2.6",
+		"vue-style-loader": "^4.1.1",
+		"vue-template-compiler": "^2.5.17",
+		"webpack": "^4.16.4",
+		"webpack-cli": "^3.1.0",
+		"webpack-command": "^0.4.1",
+		"webpack-dev-server": "^3.1.5"
+	},
+	"scripts": {
+		"dev": "node_modules/.bin/webpack-dev-server .",
+		"server": "node ./server/app.js"
+	},
+	"dependencies": {
+		"epilogue": "^0.7.1",
+		"express": "^4.16.3",
+		"restify": "^7.2.1",
+		"sequelize": "^4.38.0",
+		"sqlite3": "^4.0.2",
+		"vue": "^2.5.17"
+	}
 }
