@@ -1,8 +1,8 @@
 {
-	"name": "syno-hang-code",
+	"name": "SynoWhisper2",
 	"version": "1.0.0",
 	"main": "index.js",
-	"repository": "https://github.com/gcaaa31928/syno-hang-code.git",
+	"repository": "git@github.com:Synology-UI-Team/SynoWhisper2.git",
 	"license": "MIT",
 	"devDependencies": {
 		"css-loader": "^1.0.0",
