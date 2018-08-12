@@ -1,16 +1,26 @@
 <template>
-	<header></header>
+	<div>
+		<app-header></app-header>
+		<div class="ui container">
+			<rooms></rooms>
+		</div>
+	</div>
 </template>
 
 <script>
-import Header from '@/components/header'
+import AppHeader from '@/components/header'
+import Rooms from '@/components/rooms'
 export default {
 	name: 'App',
 	components: {
-		Header
+		AppHeader,
+		Rooms
 	}
 }
 </script>
 
-<style>
+<style lang="css">
+.ui.container{
+	margin-top: 3em;
+}
 </style>

@@ -1,8 +1,12 @@
 var path = require('path')
+var webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 function resolve (dir) {
-	  return path.join(__dirname, dir)
+	return path.join(__dirname, dir)
 }
 
 module.exports = {
@@ -14,7 +18,18 @@ module.exports = {
 			},
 			{
 				test: /\.s[a|c]ss$/,
-				loader: 'style-loader!css-loader!sass-loader'
+				loader: 'css-loader!sass-loader'
+			},
+			{
+				test: /\.(eot|jpg|png|svg|[ot]tf|woff2?)(\?v=\d+\.\d+\.\d+)?$/,
+				loader: 'file-loader'
+			},
+			{
+				test: /\.css$/,
+				use: [
+					MiniCssExtractPlugin.loader,
+					"css-loader"
+				]
 			}
 		]
 	},
@@ -34,6 +49,18 @@ module.exports = {
 		filename: 'bundle.js'
 	},
 	plugins: [
-		new VueLoaderPlugin()
+		new HtmlWebpackPlugin({
+			files: {
+				css: ["./dist/main.css"]
+			},
+			filename: path.join(__dirname, './dist/index.html'),
+			template: path.join(__dirname, './src/index.html'),
+			inject: true
+		}),
+		new VueLoaderPlugin(),
+		new MiniCssExtractPlugin({
+			filename: 'style.css'
+		}),
+		new CopyWebpackPlugin([{from: 'assets/**/*', to: 'dist/'}])
 	]
 };
