@@ -17,6 +17,17 @@ module.exports = {
 				loader: 'vue-loader'
 			},
 			{
+				exclude: /node_modules/,
+				test: /\.js$/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-env'],
+						babelrc: true
+					}
+				}
+			},
+			{
 				test: /\.s[a|c]ss$/,
 				loader: 'css-loader!sass-loader'
 			},
@@ -41,7 +52,10 @@ module.exports = {
 		}
 	},
 	devServer: {
-		publicPath: '/dist/'
+		publicPath: '/dist/',
+		proxy: {
+			'/': 'http://localhost:51967'
+		}
 	},
 	entry: ['./src/main.js'],
 	output: {

@@ -9,6 +9,8 @@
 				<i class="search icon"></i>
 			</button>
 		</div>
+		<div class="ui horizontal divider inverted">Or </div>
+		<div class="ui labeled icon button">Create Room<i class="add icon"></i> </div>
 	</div>
 </template>
 <script>

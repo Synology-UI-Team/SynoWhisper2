@@ -1,4 +1,4 @@
-import { RoomService } from '@/services/api.service'
+import { RoomsService } from '@/services/api.service'
 import {
 	SET_ROOMS,
 	FETCH_START,
@@ -18,12 +18,12 @@ export const state = {
 export const mutations = {
 	[FETCH_START] (state) {
 		state.isLoading = true;
-	}
+	},
 	[FETCH_END] (state) {
 		state.isLoading = false;
-	}
+	},
 	[SET_ROOMS] (state, rooms) {
-		state.room = rooms;
+		state.rooms = rooms;
 	}
 }
 

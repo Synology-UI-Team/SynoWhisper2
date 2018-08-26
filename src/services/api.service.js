@@ -11,10 +11,10 @@ const ApiService = {
 	},
 	get (resource, slug = '') {
 		return Vue.axios
-		.get(resource, params)
-		.catch(error) => {
+		.get(`${resource}`)
+		.catch((error) => {
 			throw new Error(`ApiService ${error}`);
-		};
+		});
 	},
 	post (resource, params) {
 		return Vue.axios.post(`${resource}`, params);
@@ -28,7 +28,7 @@ const ApiService = {
 
 export default ApiService;
 
-export default RoomsService = {
+export const RoomsService = {
 	get (slug) {
 		return ApiService.get('rooms', slug)
 	},

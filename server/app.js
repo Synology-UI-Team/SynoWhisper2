@@ -29,7 +29,7 @@ var rommResource = epilogue.resource({
 models.sequelize
 	.sync({ force: true })
 	.then(function() {
-		server.listen(function() {
+		server.listen(51967, function() {
 			var host = server.address().address,
 				port = server.address().port;
 
