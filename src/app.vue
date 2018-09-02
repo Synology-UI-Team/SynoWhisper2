@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import AppHeader from '@/components/header'
-import Rooms from '@/components/rooms'
+import AppHeader from '@/components/Header'
+import Rooms from '@/components/Rooms'
 export default {
 	name: 'App',
 	components: {
