@@ -1,5 +1,10 @@
 <template>
 	<div class="ui inverted vertical segment big-cover">
+		<div class="right menu">
+			<div class="item">
+				<router-link to="/signin">Sign In</router-link>
+			</div>
+		</div>
 		<h1 class="ui header">
 			Syno Whisper2
 		</h1>

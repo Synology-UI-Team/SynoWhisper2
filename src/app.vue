@@ -2,19 +2,17 @@
 	<div>
 		<app-header></app-header>
 		<div class="ui container">
-			<rooms></rooms>
+			<router-view></router-view>
 		</div>
 	</div>
 </template>
 
 <script>
 import AppHeader from '@/components/Header'
-import Rooms from '@/components/Rooms'
 export default {
 	name: 'App',
 	components: {
-		AppHeader,
-		Rooms
+		AppHeader
 	}
 }
 </script>
