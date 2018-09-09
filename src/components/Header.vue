@@ -15,16 +15,24 @@
 			</button>
 		</div>
 		<div class="ui horizontal divider inverted">Or </div>
-		<div class="ui labeled icon button">Create Room<i class="add icon"></i> </div>
+		<div class="ui labeled icon button" @click="showDialog=true">Create Room<i class="add icon"></i> </div>
+		<create-room-dialog :showDialog="showDialog"></create-room-dialog>
 	</div>
 </template>
 <script>
+
+import CreateRoomDialog from '@/pages/createRoom'
+
 export default  {
 	data() {
 		return {
+			showDialog: false
 		}
 	},
-	methods() {
+	components: {
+		CreateRoomDialog
+	},
+	methods: {
 	}
 }
 </script>
