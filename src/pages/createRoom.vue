@@ -1,5 +1,5 @@
 <template>
-	<md-dialog :md-active.sync="showDialog">
+	<md-dialog :md-active.sync="visible">
 		<md-dialog-title>Create Room</md-dialog-title>
 		<md-field>
 			<label>Title</label>
@@ -18,8 +18,8 @@
       			<md-file accept="image/*" />	
 		</md-field>
 		<md-dialog-actions>
-		<md-button @click="showDialog = false">Close</md-button>
-		<md-button class="md-primary" @click="showDialog = false">Save</md-button>
+		<md-button @click="doClose">Close</md-button>
+		<md-button class="md-primary" @click="doClose">Save</md-button>
 		</md-dialog-actions>
 	</md-dialog>
 </template>
@@ -28,8 +28,11 @@
 
 export default {
 	name: 'CreateRoomDialog',
-	props: ['showDialog'],
+	props: ['visible'],
 	methods: {
+		doClose() {
+			this.$emit('dialogVisible', false);
+		},
 	}
 }
 	

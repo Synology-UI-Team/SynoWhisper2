@@ -16,7 +16,8 @@
 		</div>
 		<div class="ui horizontal divider inverted">Or </div>
 		<div class="ui labeled icon button" @click="showDialog=true">Create Room<i class="add icon"></i> </div>
-		<create-room-dialog :showDialog="showDialog"></create-room-dialog>
+
+		<create-room-dialog @dialogVisible="dialogVisible" :visible="showDialog"></create-room-dialog>
 	</div>
 </template>
 <script>
@@ -33,6 +34,9 @@ export default  {
 		CreateRoomDialog
 	},
 	methods: {
+		dialogVisible (data) {
+			this.showDialog = data;
+		}
 	}
 }
 </script>
