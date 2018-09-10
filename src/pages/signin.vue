@@ -1,18 +1,30 @@
 <template>
 	<div class="ui middle center grid">
 		<div class="column">
-			<form class="ui large form">
-				<div class="ui stacked segment">
-					<textfield iconCls="user"
-						type="text"
-						placeholder="Email Address"
-					></textfield>
-					<textfield
-						iconCls="lock"
-						type="password"
-						placeholder="Password"
-					></textfield>
-				</div>
+			<form id="signin"
+				novalidate class="md-layout"
+				@submit.prevent="validateUser"
+			>
+				<md-card-content>
+					<div class="md-layout md-gutter">
+						<md-field :class="getValidationClass('username')">
+							<label for="username">User Name</label>
+							<md-input name="username" id="username" v-model="form.username" :disabled="sending" />
+							<span class="md-error" v-if="!$v.form.username.required">User name is required</span>
+							<span class="md-error" v-else-if="!$v.form.username.minlength">Invalid user name</span>
+						</md-field>
+						<md-field :class="getValidationClass('password')">
+							<label for="password">Password</label>
+							<md-input name="password" id="password" type="password" v-model="form.password" :disabled="sending" />
+							<span class="md-error" v-if="!$v.form.password.required">Password is required</span>
+							<span class="md-error" v-else-if="!$v.form.password.minlength">Invalid password</span>
+						</md-field>
+					</div>
+
+					<md-card-actions>
+						<md-button type="submit" class="md-primary" :disabled="sending">Create user</md-button>
+					</md-card-actions>
+				</md-card-content>
 			</form>
 		</div>
 	</div>
@@ -20,11 +32,60 @@
 
 <script>
 
-import Textfield from '@/components/Textfield'
+import { validationMixin } from 'vuelidate'
+  import {
+    required,
+    email,
+    minLength,
+    maxLength
+  } from 'vuelidate/lib/validators'
 
 export default {
 	name: 'Signin',
-	components: { Textfield }
+	mixins: [validationMixin],
+	data() {
+		return {
+			form: {
+				username: null,
+				password: null
+			},
+			sending: false
+		};
+	},
+	validations: {
+		form: {
+			username: {
+				required,
+				minLength: minLength(3)
+			},
+			password: {
+				required,
+				minLength: minLength(8)
+			}
+		}
+	},
+	methods: {
+		getValidationClass (fieldName) {
+			const field = this.$v.form[fieldName];
+
+			if (field) {
+				return {
+					'md-invalid': field.$invalid && field.$dirty
+				}
+			}
+		},
+		validateUser () {
+			this.$v.$touch();
+
+			if (!this.$v.$invalid) {
+				this.createUser();
+			}
+		},
+		createUser() {
+			this.sending = true;
+			debugger;
+		}
+	}
 }
 	
 </script>

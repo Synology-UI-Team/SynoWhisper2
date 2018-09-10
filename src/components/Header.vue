@@ -2,7 +2,7 @@
 	<div class="ui inverted vertical segment big-cover">
 		<div class="right menu">
 			<div class="item">
-				<router-link to="/signin">Sign In</router-link>
+				<md-button class="md-raised md-primary" to="/signin">Sign In</md-button>
 			</div>
 		</div>
 		<h1 class="ui header">

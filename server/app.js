@@ -20,10 +20,16 @@ epilogue.initialize({
 });
 
 // Create REST resource
-var rommResource = epilogue.resource({
+var roomResource = epilogue.resource({
 	model: models.Room,
 	endpoints: ['/rooms', '/rooms/:id']
 });
+
+var userResource = epilogue.resource({
+	model: models.User,
+	endpoints: ['/users', '/users/:id']
+});
+
 
 // Create database and listen
 models.sequelize
