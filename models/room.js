@@ -1,7 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Room = sequelize.define('Room', {
-    name: DataTypes.STRING
+    title: DataTypes.STRING,
+    subtitle: DataTypes.STRING,
+    description: DataTypes.STRING
   }, {});
   Room.associate = function(models) {
     // associations can be defined here

@@ -1,4 +1,4 @@
-export const ROOM_CREATE = 'createRoom'
+export const CREATE_ROOM = 'createRoom'
 export const FETCH_ROOMS = 'fetchRooms'
 
 /* for users */
