@@ -1,27 +1,28 @@
 <template>
 	<div class="ui items">
-		<post ></post>
-		<post title="這是直接指定的" subtitle="這是直接指定的副標" decription="這是直接指定的描述"></post>
+		<room ></room>
+		<room title="這是直接指定的" subtitle="這是直接指定的副標" decription="這是直接指定的描述"></room>
 	</div>
 </template>
 <script>
-import Post from '@/components/Post'
+import Room from '@/components/Room'
 import { mapGetters } from 'vuex'
 import {
 	FETCH_ROOMS
 } from '@/store/actions.type'
 
+const ROOMS_PREFIX = 'rooms/';
+
 export default  {
 	components: {
-		Post
+		Room
 	},
 	data() {
 		return {
 		}
 	},
 	mounted() {
-		this.$store.dispatch(FETCH_ROOMS, {
-		});
+		this.$store.dispatch(ROOMS_PREFIX + FETCH_ROOMS);
 	},
 	computed: {
 		...mapGetters([
