@@ -29,7 +29,7 @@ module.exports = {
 			},
 			{
 				test: /\.s[a|c]ss$/,
-				loader: 'css-loader!sass-loader'
+				loader: 'vue-style-loader!css-loader!sass-loader'
 			},
 			{
 				test: /\.(eot|jpg|png|svg|[ot]tf|woff2?)(\?v=\d+\.\d+\.\d+)?$/,
