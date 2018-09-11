@@ -37,3 +37,11 @@ export const RoomsService = {
 	}
 }
 
+export const UsersService = {
+	get (username) {
+		return ApiService.get('users', {username: username});
+	},
+	create ({username, password}) {
+		return ApiService.post('users', {username, password});
+	} 
+}

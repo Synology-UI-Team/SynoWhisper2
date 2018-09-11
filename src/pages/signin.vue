@@ -9,20 +9,20 @@
 					<div class="md-layout md-gutter">
 						<md-field :class="getValidationClass('username')">
 							<label for="username">User Name</label>
-							<md-input name="username" id="username" v-model="form.username" :disabled="sending" />
+							<md-input name="username" id="username" v-model="form.username" :disabled="isLoading" />
 							<span class="md-error" v-if="!$v.form.username.required">User name is required</span>
 							<span class="md-error" v-else-if="!$v.form.username.minlength">Invalid user name</span>
 						</md-field>
 						<md-field :class="getValidationClass('password')">
 							<label for="password">Password</label>
-							<md-input name="password" id="password" type="password" v-model="form.password" :disabled="sending" />
+							<md-input name="password" id="password" type="password" v-model="form.password" :disabled="isLoading" />
 							<span class="md-error" v-if="!$v.form.password.required">Password is required</span>
 							<span class="md-error" v-else-if="!$v.form.password.minlength">Invalid password</span>
 						</md-field>
 					</div>
 
 					<md-card-actions>
-						<md-button type="submit" class="md-primary" :disabled="sending">Create user</md-button>
+						<md-button type="submit" class="md-primary" :disabled="isLoading">Create user</md-button>
 					</md-card-actions>
 				</md-card-content>
 			</form>
@@ -33,12 +33,17 @@
 <script>
 
 import { validationMixin } from 'vuelidate'
-  import {
-    required,
-    email,
-    minLength,
-    maxLength
-  } from 'vuelidate/lib/validators'
+import {
+	required,
+	email,
+	minLength,
+	maxLength
+} from 'vuelidate/lib/validators'
+import { mapState } from 'vuex';
+import {
+	USER_CREATE,
+	USER_GET
+} from '../store/actions.type'
 
 export default {
 	name: 'Signin',
@@ -48,9 +53,11 @@ export default {
 			form: {
 				username: null,
 				password: null
-			},
-			sending: false
+			}
 		};
+	},
+	computed: {
+		...mapState('users', ['isLoading', 'user'])
 	},
 	validations: {
 		form: {
@@ -82,8 +89,10 @@ export default {
 			}
 		},
 		createUser() {
-			this.sending = true;
-			debugger;
+			this.$store.dispatch(USER_CREATE, {
+				username: this.form.username,
+				password: this.form.password
+			});
 		}
 	}
 }
