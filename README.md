@@ -7,3 +7,5 @@ yarn install
 ./node_modules/.bin/sequelize db:migrate
 npm run dev
 ```
+
+### CI & CD
