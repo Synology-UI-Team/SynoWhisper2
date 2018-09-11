@@ -4,7 +4,7 @@ import VueRouter from 'vue-router';
 import store from '@/store';
 import App from './app.vue';
 import Rooms from '@/pages/rooms';
-import Signin from '@/pages/signin.vue';
+import Signup from '@/pages/signup.vue';
 import ApiService from '@/services/api.service'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
@@ -22,8 +22,8 @@ const router = new VueRouter({
 			component: Rooms
 		},
 		{
-			path: '/signin',
-			component: Signin
+			path: '/signup',
+			component: Signup
 		}
 	]
 });

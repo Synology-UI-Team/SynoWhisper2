@@ -1,9 +1,10 @@
 <template>
 	<div class="ui inverted vertical segment big-cover">
-		<div class="right menu">
-			<div class="item">
-				<md-button class="md-raised md-primary" to="/signin">Sign In</md-button>
-			</div>
+		<div v-if="userNotLoggedIn" class="right">
+			<md-button class="md-raised md-primary" to="/signup">Sign up</md-button>
+		</div>
+		<div v-else class="right">
+			<md-avatar class="md-avatar-icon md-primary">{{ firstCharOfName }}</md-avatar>
 		</div>
 		<h1 class="ui header">
 			Syno Whisper2
@@ -23,11 +24,24 @@
 <script>
 
 import CreateRoomDialog from '@/pages/createRoom'
+import { mapState } from 'vuex'
 
 export default  {
 	data() {
 		return {
 			showDialog: false
+		}
+	},
+	computed: {
+		...mapState('users', ['user']),
+		userNotLoggedIn() {
+			return !this.user.username;
+		},
+		firstCharOfName() {
+			if (this.user.username) {
+				return this.user.username.charAt(0).toUpperCase();
+			}
+			return '';
 		}
 	},
 	components: {
@@ -49,4 +63,10 @@ export default  {
 	font-size: 4em;
 	text-align: center;
 }
+
+.right {
+	float: right;
+	padding-right: 5px;
+}
+
 </style>

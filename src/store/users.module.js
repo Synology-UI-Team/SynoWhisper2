@@ -1,5 +1,6 @@
 import { UsersService } from '@/services/api.service'
 import {
+	SET_USER,
 	FETCH_START,
 	FETCH_END
 } from './mutations.type'
@@ -20,6 +21,9 @@ export const mutations = {
 	},
 	[FETCH_END] (state) {
 		state.isLoading = false;
+	},
+	[SET_USER] (state, user) {
+		state.user = user;
 	}
 }
 
@@ -29,12 +33,14 @@ export const actions = {
 		return UsersService.create(params)
 		.then(({ data }) => {
 			commit(FETCH_END);
-		})
+			commit(SET_USER, {username: data.username})
+		});
 	}
 }
 
 export default {
 	state,
 	actions,
-	mutations
+	mutations,
+	namespaced: true
 }

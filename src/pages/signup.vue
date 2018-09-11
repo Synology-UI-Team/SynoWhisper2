@@ -22,9 +22,14 @@
 					</div>
 
 					<md-card-actions>
-						<md-button type="submit" class="md-primary" :disabled="isLoading">Create user</md-button>
+						<md-button type="submit" class="md-primary" :disabled="isLoading || userCreated">Create user</md-button>
 					</md-card-actions>
 				</md-card-content>
+
+				<md-snackbar md-position="center" :md-duration="Infinity" :md-active="userCreated" md-persistent>
+					<span>User {{ this.user.username }} has been created.</span>
+					<md-button class="md-primary" to="/">Click here to redirect to home page</md-button>
+				</md-snackbar>
 			</form>
 		</div>
 	</div>
@@ -45,8 +50,10 @@ import {
 	USER_GET
 } from '../store/actions.type'
 
+const USER_PREFIX = 'users/';
+
 export default {
-	name: 'Signin',
+	name: 'Signup',
 	mixins: [validationMixin],
 	data() {
 		return {
@@ -57,7 +64,10 @@ export default {
 		};
 	},
 	computed: {
-		...mapState('users', ['isLoading', 'user'])
+		...mapState('users', ['isLoading', 'user']),
+		userCreated() {
+			return !!this.user.username;
+		}
 	},
 	validations: {
 		form: {
@@ -89,7 +99,7 @@ export default {
 			}
 		},
 		createUser() {
-			this.$store.dispatch(USER_CREATE, {
+			this.$store.dispatch(USER_PREFIX + USER_CREATE, {
 				username: this.form.username,
 				password: this.form.password
 			});
