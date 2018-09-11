@@ -9,3 +9,6 @@ npm run dev
 ```
 
 ### CI & CD
+
+http://wit-ci.synology.io:8081/#/
+
