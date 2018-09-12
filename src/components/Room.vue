@@ -2,8 +2,8 @@
 <md-card>
 	<md-card-header>
 		<md-card-header-text>
-			<div class="md-title">{{this.title}}</div>
-			<div class="md-subhead">{{this.subtitle}}</div>
+			<div class="md-title">{{ title }}</div>
+			<div class="md-subhead">{{ subtitle }}</div>
 		</md-card-header-text>
 
 		<md-card-media>
@@ -13,7 +13,7 @@
 		</md-card-media>
 	</md-card-header>
 	<md-card-content>
-		{{this.description}}
+		{{ description }}
 	</md-card-content>
 	<md-card-actions>
 		<md-button class="md-icon-button">
@@ -25,7 +25,7 @@
 <script>
 import image from './baby.jpg';
 export default {
-	name: 'Post',
+	name: 'Room',
 	props: {
 		img_url: {
 			default: image

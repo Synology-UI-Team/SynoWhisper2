@@ -44,7 +44,7 @@ export const actions = {
 	[CREATE_ROOM] ({ commit }, params) {
 		return RoomsService.create(params)
 		.then(({ data }) => {
-			commit(ADD_ROOM, data.room);
+			commit(ADD_ROOM, data);
 		})
 	}
 }

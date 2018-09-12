@@ -78,13 +78,11 @@ export default {
 			}
 		},
 		createRoom() {
-			var room = {
+			this.$store.dispatch(ROOMS_PREFIX + CREATE_ROOM, {
 				title: this.form.title,
 				subtitle: this.form.subtitle,
 				description: this.form.description
-			};
-			debugger;
-			this.$store.dispatch(ROOMS_PREFIX + CREATE_ROOM, { room });
+			});
 			this.doClose();
 		}
 	}

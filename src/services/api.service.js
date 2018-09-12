@@ -33,7 +33,7 @@ export const RoomsService = {
 		return ApiService.get('rooms', slug)
 	},
 	create (params) {
-		return ApiService.post('rooms', {room: params});
+		return ApiService.post('rooms', params);
 	}
 }
 

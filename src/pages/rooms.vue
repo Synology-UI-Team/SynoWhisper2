@@ -1,8 +1,7 @@
 <template>
 	<div class="ui items">
-		<room ></room>
 		<room title="這是直接指定的" subtitle="這是直接指定的副標" description="這是直接指定的描述"></room>
-		<room v-for="room in rooms" title="room.title" subtitle="room.subtitle" description="room.description"></room>
+		<room v-for="room in rooms" :title="room.title" :subtitle="room.subtitle" :description="room.description"></room>
 	</div>
 </template>
 <script>
