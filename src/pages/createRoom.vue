@@ -1,5 +1,5 @@
 <template>
-	<md-dialog :md-active.sync="visible">
+	<md-dialog :md-active.sync="toggleCreateRoomDialog">
 		<md-dialog-title>Create Room</md-dialog-title>
 		<md-content>
 			<form id="create-room"
@@ -34,10 +34,13 @@
 
 <script>
 
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import {
 	CREATE_ROOM
 } from '@/store/actions.type'
+import {
+	TOGGLE_CREATE_ROOM_DIALOG
+} from '@/store/mutations.type'
 import { validationMixin } from 'vuelidate'
 import {
 	required,
@@ -67,6 +70,17 @@ export default {
 				required
 			}
 		}
+	},
+	computed: {
+		toggleCreateRoomDialog: {
+			set(value) {
+				this.$store.commit(`views/${TOGGLE_CREATE_ROOM_DIALOG}`, value);
+			},
+			get() {
+				return this.$store.state.views[TOGGLE_CREATE_ROOM_DIALOG];
+			}
+		}
+		// ...mapState('views', ['toggleCreateRoomDialog']),
 	},
 	methods: {
 		doClose() {

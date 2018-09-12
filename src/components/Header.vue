@@ -16,15 +16,23 @@
 			</button>
 		</div>
 		<div class="ui horizontal divider inverted">Or </div>
-		<div class="ui labeled icon button" @click="showDialog=true">Create Room<i class="add icon"></i> </div>
+		<div class="ui labeled icon button" @click="showCreateRoomDialog()">Create Room<i class="add icon"></i> </div>
 
-		<create-room-dialog @dialogVisible="dialogVisible" :visible="showDialog"></create-room-dialog>
+		<create-room-dialog></create-room-dialog>
 	</div>
 </template>
 <script>
 
 import CreateRoomDialog from '@/pages/createRoom'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
+import {
+	FETCH_ROOMS,
+	CREATE_ROOM
+} from '@/store/actions.type'
+
+import {
+	TOGGLE_CREATE_ROOM_DIALOG
+} from '@/store/mutations.type'
 
 export default  {
 	data() {
@@ -34,6 +42,7 @@ export default  {
 	},
 	computed: {
 		...mapState('users', ['user']),
+		...mapState('views', ['toggleCreateRoomDialog']),
 		userNotLoggedIn() {
 			return !this.user.username;
 		},
@@ -48,6 +57,9 @@ export default  {
 		CreateRoomDialog
 	},
 	methods: {
+		showCreateRoomDialog () {
+			this.$store.commit(`views/${TOGGLE_CREATE_ROOM_DIALOG}`, true);
+		},
 		dialogVisible (data) {
 			this.showDialog = data;
 		}
