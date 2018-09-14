@@ -22,6 +22,9 @@ const ApiService = {
 	update (resource, slug, params) {
 		return Vue.axios.put(`${resource}/${slug}`, params);
 	},
+	delete (resource, slug = '', params) {
+		return Vue.axios.delete(`${resource}/${slug}`, params);
+	},
 	put (resource, params) {
 	}
 }
@@ -34,6 +37,9 @@ export const RoomsService = {
 	},
 	create (params) {
 		return ApiService.post('rooms', params);
+	},
+	delete (slug) {
+		return ApiService.delete('rooms', slug);
 	}
 }
 

@@ -2,13 +2,15 @@ import { RoomsService } from '@/services/api.service'
 import {
 	SET_ROOMS,
 	ADD_ROOM,
+	REMOVE_ROOM,
 	FETCH_START,
 	FETCH_END
 } from './mutations.type'
 
 import {
 	FETCH_ROOMS,
-	CREATE_ROOM
+	CREATE_ROOM,
+	DELETE_ROOM
 } from './actions.type'
 
 export const state = {
@@ -29,6 +31,18 @@ export const mutations = {
 	},
 	[ADD_ROOM] (state, room) {
 		state.rooms.push(room);
+	},
+	[REMOVE_ROOM] (state, roomId) {
+		let index = -1;
+		state.rooms.every((room, idx) => {
+			if (room.id === roomId) {
+				index = idx;
+				return false;
+			}
+			return true;
+		});
+		if (index === -1) return;
+		state.rooms.splice(index, 1);
 	}
 }
 
@@ -45,6 +59,12 @@ export const actions = {
 		return RoomsService.create(params)
 		.then(({ data }) => {
 			commit(ADD_ROOM, data);
+		})
+	},
+	[DELETE_ROOM] ({ commit }, params) {
+		return RoomsService.delete(params)
+		.then(({ data }) => {
+			commit(REMOVE_ROOM, params);
 		})
 	}
 }

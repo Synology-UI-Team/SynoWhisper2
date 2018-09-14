@@ -4,6 +4,7 @@ export const FETCH_END = 'isFetched'
 /* for room */
 export const SET_ROOMS = 'setRooms'
 export const ADD_ROOM = 'addRoom'
+export const REMOVE_ROOM = 'removeRoom'
 
 /* for user */
 export const SET_USER = 'setUser'

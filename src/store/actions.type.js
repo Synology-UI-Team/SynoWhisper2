@@ -1,4 +1,5 @@
 export const CREATE_ROOM = 'createRoom'
+export const DELETE_ROOM = 'deleteRoom'
 export const FETCH_ROOMS = 'fetchRooms'
 
 /* for users */

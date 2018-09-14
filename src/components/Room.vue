@@ -17,7 +17,7 @@
 			{{ description }}
 		</md-card-content>
 		<md-card-actions md-alignment="space-between">
-			<md-button class="md-icon-button">
+			<md-button class="md-icon-button" @click.stop.prevent="deleteRoom()">
 				<md-icon class="md-size-1x">delete</md-icon>
 			</md-button>
 			<md-button :to="getRoomPath(id)">
@@ -30,6 +30,7 @@
 <script>
 import image from './baby.jpg';
 import { mapGetters } from 'vuex'
+import { DELETE_ROOM } from '@/store/actions.type';
 
 export default {
 	name: 'Room',
@@ -50,13 +51,17 @@ export default {
 			default: ''
 		},
 		roomId: {
-			type: String
 		}
 	},
 	computed: {
 		...mapGetters('rooms', ['getRoomPath']),
 		id() {
 			return parseInt(this.roomId);
+		}
+	},
+	methods: {
+		deleteRoom() {
+			this.$store.dispatch(`rooms/${DELETE_ROOM}`, this.id);
 		}
 	}
 }
