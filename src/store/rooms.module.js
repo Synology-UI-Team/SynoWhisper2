@@ -16,7 +16,8 @@ import {
 export const state = {
 	rooms: [
 	],
-	isLoading: false
+	isLoading: false,
+	loaded: false
 }
 
 export const mutations = {
@@ -24,6 +25,7 @@ export const mutations = {
 		state.isLoading = true;
 	},
 	[FETCH_END] (state) {
+		state.loaded = true;
 		state.isLoading = false;
 	},
 	[SET_ROOMS] (state, rooms) {
@@ -51,8 +53,8 @@ export const actions = {
 		commit(FETCH_START);
 		return RoomsService.get()
 		.then(({ data }) => {
-			commit(FETCH_END);
 			commit(SET_ROOMS, data);
+			commit(FETCH_END);
 		})
 	},
 	[CREATE_ROOM] ({ commit }, params) {

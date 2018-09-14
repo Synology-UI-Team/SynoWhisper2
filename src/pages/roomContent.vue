@@ -1,9 +1,8 @@
 <template>
 <div>
 	<div v-if="!!room">
-	<div>{{ room.title }}</div>
-	<div>{{ room.subtitle }}</div>
-	<div>{{ room.description }}</div>
+	<h3>{{ room.title }}</h3><h4 v-if="room.subtitle"> - {{ room.subtitle }}</h4>
+	<p>{{ room.description }}</p>
 	<md-table>
 		<md-table-row>
 			<md-table-head>title</md-table-head>
@@ -13,7 +12,7 @@
 		<post v-for="post in posts" :title="post.title" :subtitle="post.subtitle" :description="post.description" :key="post.id"></post>
 	</md-table>
 	</div>
-	<div v-else>
+	<div v-if="showNoRoomExist">
 		<div>no such room exists</div>
 	</div>
 </div>
@@ -22,7 +21,7 @@
 import Post from '@/components/Post'
 import { mapState, mapGetters } from 'vuex'
 import {
-	
+	FETCH_ROOMS
 } from '@/store/actions.type'
 
 export default  {
@@ -40,10 +39,16 @@ export default  {
 		}
 	},
 	mounted() {
-		//this.$store.dispatch(ROOMS_PREFIX + FETCH_ROOMS);
+		if (!this.isRoomLoaded && !this.isRoomLoading) {
+			this.$store.dispatch(`rooms/${FETCH_ROOMS}`);
+		}
 	},
 	computed: {
 		...mapGetters('rooms', ['getRoom']),
+		...mapState('rooms', {
+			isRoomLoaded: 'loaded',
+			isRoomLoading: 'isLoading'
+		}),
 		id() {
 			return parseInt(this.roomId);
 		},
@@ -52,6 +57,9 @@ export default  {
 		},
 		posts() {
 			return this.$store.getters['posts/getPosts'](this.id);
+		},
+		showNoRoomExist() {
+			return this.isRoomLoaded && !this.room && !this.isRoomLoading;
 		}
 	}
 }
