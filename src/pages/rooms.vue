@@ -1,9 +1,7 @@
 <template>
 	<div class="ui items">
 		<room title="這是直接指定的" subtitle="這是直接指定的副標" description="這是直接指定的描述"></room>
-		<router-link v-for="room in rooms" :to="getRoomPath(room.id)">
-			<room :title="room.title" :subtitle="room.subtitle" :description="room.description" :key="room.id"></room>
-		</router-link>
+		<room v-for="room in rooms" :title="room.title" :subtitle="room.subtitle" :description="room.description" :key="room.id" :roomId="room.id"></room>
 	</div>
 </template>
 <script>
@@ -31,11 +29,6 @@ export default  {
 			'isLoading',
 			'rooms'
 		])
-	},
-	methods: {
-		getRoomPath(id) {
-			return `/room/${id}`;
-		}
 	}
 }
 </script>

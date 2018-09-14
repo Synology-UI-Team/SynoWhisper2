@@ -52,6 +52,9 @@ export const actions = {
 export const getters = {
 	getRoom: (state) => {
 		return (roomId) => state.rooms.filter((room) => room.id === roomId)[0];
+	},
+	getRoomPath: (state) => {
+		return (roomId) => `/room/${roomId}`
 	}
 };
 
