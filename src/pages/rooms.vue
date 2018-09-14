@@ -1,6 +1,6 @@
 <template>
 	<div class="ui items">
-		<room title="這是直接指定的" subtitle="這是直接指定的副標" description="這是直接指定的描述"></room>
+		<div v-if="rooms.length === 0">No available room, please create one</div>
 		<room v-for="room in rooms" :title="room.title" :subtitle="room.subtitle" :description="room.description" :key="room.id" :roomId="room.id"></room>
 	</div>
 </template>
