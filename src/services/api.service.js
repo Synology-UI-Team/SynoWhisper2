@@ -45,3 +45,12 @@ export const UsersService = {
 		return ApiService.post('users', {username, password});
 	} 
 }
+
+export const PostsService = {
+	get(roomId) {
+		return ApiService.get('posts', {room_id: roomId });
+	},
+	create({title, roomId}) {
+		return ApiService.post('posts', {room_id: roomId, title: title, likedNumber: 0});
+	}
+}

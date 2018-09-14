@@ -30,6 +30,11 @@ var userResource = epilogue.resource({
 	endpoints: ['/users', '/users/:id']
 });
 
+var postResource = epilogue.resource({
+	model: models.Post,
+	endpoints: ['/posts', '/posts/:id']
+});
+
 
 // Create database and listen
 models.sequelize

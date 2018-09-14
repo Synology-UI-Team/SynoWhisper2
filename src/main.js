@@ -5,6 +5,7 @@ import store from '@/store';
 import App from './app.vue';
 import Rooms from '@/pages/rooms';
 import Signup from '@/pages/signup.vue';
+import RoomContent from '@/pages/roomContent.vue'
 import ApiService from '@/services/api.service'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
@@ -24,6 +25,11 @@ const router = new VueRouter({
 		{
 			path: '/signup',
 			component: Signup
+		},
+		{
+			path: '/room/:roomId',
+			component: RoomContent,
+			props: true
 		}
 	]
 });

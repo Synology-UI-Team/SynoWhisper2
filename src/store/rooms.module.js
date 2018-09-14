@@ -49,9 +49,16 @@ export const actions = {
 	}
 }
 
+export const getters = {
+	getRoom: (state) => {
+		return (roomId) => state.rooms.filter((room) => room.id === roomId)[0];
+	}
+};
+
 export default {
 	state,
 	actions,
 	mutations,
+	getters,
 	namespaced: true
 }
