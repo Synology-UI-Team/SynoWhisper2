@@ -23,12 +23,12 @@
 				<label>Image</label>
 					<md-file accept="image/*" />	
 			</md-field>
+			<div class="right">
+				<md-button @click="doClose">Close</md-button>
+				<md-button type="submit" class="md-primary">Create</md-button>
+			</div>
 			</form>
 		</md-content>
-		<md-dialog-actions>
-			<md-button @click="doClose">Close</md-button>
-			<md-button type="submit" class="md-primary">Create</md-button>
-		</md-dialog-actions>
 	</md-dialog>
 </template>
 
@@ -84,11 +84,10 @@ export default {
 	},
 	methods: {
 		doClose() {
-			this.$emit('dialogVisible', false);
+			this.toggleCreateRoomDialog = false;
 		},
 		validateRoom() {
 			this.$v.$touch();
-
 			if (!this.$v.$invalid) {
 				this.createRoom();
 			}
@@ -99,7 +98,7 @@ export default {
 				subtitle: this.form.subtitle,
 				description: this.form.description
 			});
-			this.doClose();
+			this.toggleCreateRoomDialog = false;
 		}
 	}
 }
@@ -108,5 +107,8 @@ export default {
 <style lang="scss" scoped>
 .md-content {
 	padding: 16px;
+}
+.right {
+	margin-left: auto;
 }
 </style>
